@@ -33,18 +33,7 @@ addBtn.addEventListener("click", function(e) {
 
 	memberForm.reset();
 
-	
-	membersList.innerHTML = members.map((member, serial) => {
-		serial +=1;
-		return `<tr>
-		<td title="${member.uniqueId}">${serial}</td>
-		<td>${member.firstname} ${member.surname}</td>
-		<td>${member.age}</td>
-		<td>${member.level}</td>
-		<td>${member.club}</td>
-		<td><button class="btn btn-danger p-1" onclick="delMember('${member.uniqueId}')">x</button></td>
-		</tr>`
-	})
+	generateMemberTable();
 })
 
 let delMember = (index) => {
@@ -54,7 +43,11 @@ let delMember = (index) => {
     console.log(index, members);
 	// save to/update json file membersList.json
 
-	
+	generateMemberTable();
+}
+
+
+let generateMemberTable = () => {
 	membersList.innerHTML = members.map((member, serial) => {
 		serial +=1;
 		return `<tr>
