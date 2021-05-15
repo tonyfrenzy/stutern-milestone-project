@@ -1,0 +1,85 @@
+.create-member {
+  background: #f1f7fc;
+  padding: 80px 0;
+}
+
+.create-member .form-container {
+  display: table;
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.create-member form {
+  display: table-cell;
+  width: 400px;
+  background-color: #ffffff;
+  padding: 15px;
+  color: #505e6c;
+}
+
+@media (max-width:991px) {
+  .create-member form {
+    padding: 40px;
+  }
+}
+
+.create-member form h2 {
+  font-size: 24px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.create-member form .form-control {
+  background: #f7f9fc;
+  border: none;
+  border-bottom: 1px solid #dfe7f1;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+  text-indent: 6px;
+  height: 40px;
+}
+
+.create-member form .form-check {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.create-member form .btn-primary {
+  background: #f4476b;
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+  box-shadow: none;
+  margin-top: 35px;
+  text-shadow: none;
+  outline: none !important;
+}
+
+.create-member form .btn-primary:hover, .create-member form .btn-primary:active {
+  background: #eb3b60;
+}
+
+.create-member form .btn-primary:active {
+  transform: translateY(1px);
+}
+
+.create-member form .already {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #6f7a85;
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+.create-member {
+}
+
+body {
+  background-color: #cfc;
+}
+

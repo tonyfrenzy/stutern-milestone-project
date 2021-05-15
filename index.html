@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Milestone Project 1 - Stutern - Tony Ayeni</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body><section class="create-member">
+    <div class="form-container">
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post" id="memberForm">
+                    <h2 class="text-center"><strong>Add</strong> Club Member.</h2>
+                    <div class="form-group"><input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" /></div>
+                    <div class="form-group"><input type="text" class="form-control" id="surname" name="surname" placeholder="Surname" /></div>
+                    <div class="form-group"><input type="number" class="form-control" id="age" name="age" placeholder="Age" min="15" /></div>
+                    <div class="form-group"><select class="form-control" id="level" name="level">
+                            <option>Select Level</option>
+                            <option value="100">100</option>
+                            <option value="200">200</option>
+                            <option value="300">300</option>
+                            <option value="400">400</option>
+                            <option value="500">500</option>
+                        </select></div>
+                    <div class="form-group"><input type="text" class="form-control" id="club" name="club" placeholder="Favorite Club" /></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" id="addBtn" type="button">Add Member</button></div>
+                </form>                
+            </div>
+            <div class="col-md-8">
+                <div class="table-responsive bg-white">
+                    <h3 class="text-center py-3">Members</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>FULL NAME</th>
+                                <th>AGE</th>
+                                <th>LEVEL</th>
+                                <th>CLUB</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="membersList"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+
+</body>
+
+</html>
