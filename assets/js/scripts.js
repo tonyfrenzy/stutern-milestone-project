@@ -15,7 +15,7 @@ addBtn.addEventListener("click", function(e) {
 	e.preventDefault();
 	// validateForm();
 
-	let ID = function () {
+	const ID = function () {
 		return (Math.random().toString(36).substr(2, 5) + Date.now().toString(36)).toLowerCase()
 	};
 
@@ -29,7 +29,7 @@ addBtn.addEventListener("click", function(e) {
 	}
 
 	members.push(newMember);
-	// save to/update json file membersList.json
+	// update membersList.json
 
 	memberForm.reset();
 
@@ -40,8 +40,7 @@ let delMember = (index) => {
 	// https://www.tutorialspoint.com/find-specific-key-value-in-array-of-objects-using-javascript
 
 	members.splice(index, 1);
-    console.log(index, members);
-	// save to/update json file membersList.json
+	// update membersList.json
 
 	generateMemberTable();
 }
@@ -59,4 +58,28 @@ let generateMemberTable = () => {
 		<td><button class="btn btn-danger p-1" onclick="delMember('${member.uniqueId}')">x</button></td>
 		</tr>`
 	})
+}
+
+
+let validateForm = () => {
+	if (firstname == "" || typeof(firstname) !== String) {
+		alert("First name must be filled out with a text");
+		return false;
+	}
+	if (surname == "" || typeof(firstname) !== String) {
+		alert("Surname must be filled out with a text");
+		return false;
+	}
+	if (age == "" || typeof(firstname) !== Number) {
+		alert("age must be filled out with a number.");
+		return false;
+	}
+	if (level == "Select Level" || typeof(firstname) !== Number) {
+		alert("A student level must be selected!");
+		return false;
+	}
+	if (club == "" || typeof(firstname) !== String) {
+		alert("Club must be filled out with a text");
+		return false;
+	}
 }
