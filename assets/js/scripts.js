@@ -1,6 +1,7 @@
 let memberForm = document.getElementById('memberForm');
 let addBtn = document.getElementById('addBtn');
 let membersList = document.getElementById('membersList');
+let membersTable = document.getElementById('membersTable');
 let delMemberBtn = document.getElementById('delMemberBtn');
 
 let firstname = document.getElementById('firstname');
@@ -9,7 +10,13 @@ let age 	  = document.getElementById('age');
 let level 	  = document.getElementById('level');
 let club 	  = document.getElementById('club');
 
-let members = [];
+let members = JSON.parse(localStorage.getItem("membersList"));
+
+window.addEventListener("load", function(e) {
+	console.log(members);
+
+	loadMemberList();	
+});   
 
 addBtn.addEventListener("click", function(e) {
 	e.preventDefault();
@@ -28,35 +35,45 @@ addBtn.addEventListener("click", function(e) {
 		club 	 : club.value,
 	}
 
-	members.push(newMember);
-	// update membersList.json
-
 	memberForm.reset();
 
-	generateMemberTable();
+	// Add new member and save to local storage.
+	members.push(newMember);
+	let storedList = JSON.stringify(members);
+	localStorage.setItem("membersList", storedList);
+
+	// Load from localStorage
+	loadMemberList();
 })
 
 let delMember = (index) => {
 	// https://www.tutorialspoint.com/find-specific-key-value-in-array-of-objects-using-javascript
 
+	// Retrieve
+	members = JSON.parse(localStorage.getItem("membersList"));
 	members.splice(index, 1);
 	// update membersList.json
+	let storedList = JSON.stringify(members);
+	localStorage.setItem("membersList", storedList);
+	// localStorage.setItem("membersList", members);
 
-	generateMemberTable();
+	loadMemberList();
 }
 
 
-let generateMemberTable = () => {
+let loadMemberList = () => {
+	let members = JSON.parse(localStorage.getItem("membersList"));
+
 	membersList.innerHTML = members.map((member, serial) => {
 		serial +=1;
-		return `<tr>
-		<td title="${member.uniqueId}">${serial}</td>
+		let memberRow = `<tr><td title="${member.uniqueId}">${serial}</td>
 		<td>${member.firstname} ${member.surname}</td>
 		<td>${member.age}</td>
 		<td>${member.level}</td>
 		<td>${member.club}</td>
-		<td><button class="btn btn-danger p-1" onclick="delMember('${member.uniqueId}')">x</button></td>
-		</tr>`
+		<td><button class="btn btn-danger p-1" onclick="delMember('${member.uniqueId}')">x</button></td></tr>`;
+
+		return memberRow;
 	})
 }
 
