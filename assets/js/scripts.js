@@ -2,6 +2,7 @@ let memberForm = document.getElementById('memberForm');
 let addBtn = document.getElementById('addBtn');
 let membersList = document.getElementById('membersList');
 let membersTable = document.getElementById('membersTable');
+let membersJson = document.getElementById('membersJson');
 let delMemberBtn = document.getElementById('delMemberBtn');
 
 let firstname = document.getElementById('firstname');
@@ -64,6 +65,7 @@ let delMember = (index) => {
 let loadMemberList = () => {
 	let members = JSON.parse(localStorage.getItem("membersList"));
 
+	membersJson.innerHTML = JSON.stringify(members, null, 2);
 	membersList.innerHTML = members.map((member, serial) => {
 		serial +=1;
 		let memberRow = `<tr><td title="${member.uniqueId}">${serial}</td>
