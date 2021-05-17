@@ -66,9 +66,8 @@ let loadMemberList = () => {
 
 	membersJson.innerHTML = JSON.stringify(members, null, 2);
 	membersList.innerHTML = members.map((member, i) => {
-		// console.log(members[i])
-
 		let serial = i + 1;
+
 		let memberRow = `<tr><td title="${member.uniqueId}">${serial}</td>
 		<td>${member.firstname} ${member.surname}</td>
 		<td>${member.age}</td>
@@ -78,6 +77,7 @@ let loadMemberList = () => {
 
 		return memberRow;
 	})
+	.join(''); // Remove trailing ',' commas.
 }
 
 
