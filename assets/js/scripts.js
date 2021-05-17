@@ -11,12 +11,19 @@ let age 	  = document.getElementById('age');
 let level 	  = document.getElementById('level');
 let club 	  = document.getElementById('club');
 
-let members = JSON.parse(localStorage.getItem("membersList"));
+
+let dummyMemberJson = () => {
+	let members = JSON.parse(localStorage.getItem("membersList")) ?? JSON.parse(membersJson.value);
+	console.log(members);
+	return members;
+}
+
+// let members = JSON.parse(localStorage.getItem("membersList"));
+let members = dummyMemberJson();
 
 window.onload = function(e) {
 // window.addEventListener("load", function(e) {
 	// console.log(members);
-
 	loadMemberList();	
 // });   
 };   
@@ -27,42 +34,43 @@ addBtn.addEventListener("click", function(e) {
 
 	for (let i=0; i < memberForm.elements.length; i++) {
 		if (memberForm.elements[i].value === '' && memberForm.elements[i].hasAttribute('required')) {
-			// alert('There are some required fields!');
+
 			if (memberForm.elements[i].name == 'firstname') { 
 				firstnameErrorDiv.innerText = 'First name field is required!';
 				firstname.style.borderColor = 'red';
 				firstnameErrorDiv.style.display = 'block';
 			} else {
 				firstnameErrorDiv.style.display = 'none';
-				firstname.style.borderColor = '';}
+				firstname.style.borderColor = '';
+			}
 			if (memberForm.elements[i].name == 'surname') { 
 				surnameErrorDiv.innerText = 'Surname field is required!';
 				surname.style.borderColor = 'red';
 				surnameErrorDiv.style.display = 'block';
 			} else {
 				surnameErrorDiv.style.display = 'none';
-				surname.style.borderColor = '';}
+				surname.style.borderColor = '';
+			}
 			if (memberForm.elements[i].name == 'age') { 
 				ageErrorDiv.innerText = 'Age field is required!';
 				age.style.borderColor = 'red';
 				ageErrorDiv.style.display = 'block';
 			} else {
 				ageErrorDiv.style.display = 'none';
-				age.style.borderColor = '';}
+				age.style.borderColor = '';
+			}
 			if (memberForm.elements[i].name == 'level') { 
 				levelErrorDiv.innerText = 'Member level is required!';
 				level.style.borderColor = 'red';
 				levelErrorDiv.style.display = 'block';
 			} else {
 				levelErrorDiv.style.display = 'none';
-				level.style.borderColor = '';}
+				level.style.borderColor = '';
+			}
 			return false;
 		}
 	}
-	// let lastGrabbed = document.querySelector('form small .alert-danger');
-	// console.log(lastGrabbed);
-	// lastGrabbed.style.display = "none";
-	// // memberForm.submit();
+	// onFocus clear all pending error div if value > 0.
 
 	const ID = function () {
 		return (Math.random().toString(36).substr(2, 5) + Date.now().toString(36)).toLowerCase()
@@ -82,6 +90,9 @@ addBtn.addEventListener("click", function(e) {
 	// Add new member and save to local storage.
 	members.push(newMember);
 	let storedList = JSON.stringify(members);
+	
+	// Save data to both textarea filed and localStorage.
+	membersJson.value = storedList;
 	localStorage.setItem("membersList", storedList);
 
 	loadMemberList();
@@ -93,14 +104,17 @@ let delMember = (index) => {
 	members.splice(index, 1);
 
 	let storedList = JSON.stringify(members);
+
+	// Save data to both textarea filed and localStorage.
+	membersJson.value = storedList;
 	localStorage.setItem("membersList", storedList);
 
 	loadMemberList();
 }
 
-// Load members list for localStorage.
+// Load members list from localStorage/textarea field.
 let loadMemberList = () => {
-	let members = JSON.parse(localStorage.getItem("membersList"));
+	let members = dummyMemberJson();
 
 	membersJson.innerHTML = JSON.stringify(members, null, 2);
 	membersList.innerHTML = members.map((member, i) => {
