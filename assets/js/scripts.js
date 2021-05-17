@@ -53,10 +53,9 @@ let delMember = (index) => {
 	// Retrieve
 	members = JSON.parse(localStorage.getItem("membersList"));
 	members.splice(index, 1);
-	// update membersList.json
+
 	let storedList = JSON.stringify(members);
 	localStorage.setItem("membersList", storedList);
-	// localStorage.setItem("membersList", members);
 
 	loadMemberList();
 }
@@ -66,14 +65,16 @@ let loadMemberList = () => {
 	let members = JSON.parse(localStorage.getItem("membersList"));
 
 	membersJson.innerHTML = JSON.stringify(members, null, 2);
-	membersList.innerHTML = members.map((member, serial) => {
-		serial +=1;
+	membersList.innerHTML = members.map((member, i) => {
+		// console.log(members[i])
+
+		let serial = i + 1;
 		let memberRow = `<tr><td title="${member.uniqueId}">${serial}</td>
 		<td>${member.firstname} ${member.surname}</td>
 		<td>${member.age}</td>
 		<td>${member.level}</td>
 		<td>${member.club}</td>
-		<td><button class="btn btn-danger p-1" onclick="delMember('${member.uniqueId}')">x</button></td></tr>`;
+		<td><button class="btn btn-danger p-1" onclick="delMember(${i})">x</button></td></tr>`;
 
 		return memberRow;
 	})
