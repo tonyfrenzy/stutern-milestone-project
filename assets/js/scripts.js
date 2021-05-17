@@ -13,15 +13,56 @@ let club 	  = document.getElementById('club');
 
 let members = JSON.parse(localStorage.getItem("membersList"));
 
-window.addEventListener("load", function(e) {
-	console.log(members);
+window.onload = function(e) {
+// window.addEventListener("load", function(e) {
+	// console.log(members);
 
 	loadMemberList();	
-});   
+// });   
+};   
 
 addBtn.addEventListener("click", function(e) {
 	e.preventDefault();
 	// validateForm();
+
+	for (let i=0; i < memberForm.elements.length; i++) {
+		if (memberForm.elements[i].value === '' && memberForm.elements[i].hasAttribute('required')) {
+			// alert('There are some required fields!');
+			if (memberForm.elements[i].name == 'firstname') { 
+				firstnameErrorDiv.innerText = 'First name field is required!';
+				firstname.style.borderColor = 'red';
+				firstnameErrorDiv.style.display = 'block';
+			} else {
+				firstnameErrorDiv.style.display = 'none';
+				firstname.style.borderColor = '';}
+			if (memberForm.elements[i].name == 'surname') { 
+				surnameErrorDiv.innerText = 'Surname field is required!';
+				surname.style.borderColor = 'red';
+				surnameErrorDiv.style.display = 'block';
+			} else {
+				surnameErrorDiv.style.display = 'none';
+				surname.style.borderColor = '';}
+			if (memberForm.elements[i].name == 'age') { 
+				ageErrorDiv.innerText = 'Age field is required!';
+				age.style.borderColor = 'red';
+				ageErrorDiv.style.display = 'block';
+			} else {
+				ageErrorDiv.style.display = 'none';
+				age.style.borderColor = '';}
+			if (memberForm.elements[i].name == 'level') { 
+				levelErrorDiv.innerText = 'Member level is required!';
+				level.style.borderColor = 'red';
+				levelErrorDiv.style.display = 'block';
+			} else {
+				levelErrorDiv.style.display = 'none';
+				level.style.borderColor = '';}
+			return false;
+		}
+	}
+	// let lastGrabbed = document.querySelector('form small .alert-danger');
+	// console.log(lastGrabbed);
+	// lastGrabbed.style.display = "none";
+	// // memberForm.submit();
 
 	const ID = function () {
 		return (Math.random().toString(36).substr(2, 5) + Date.now().toString(36)).toLowerCase()
@@ -43,13 +84,10 @@ addBtn.addEventListener("click", function(e) {
 	let storedList = JSON.stringify(members);
 	localStorage.setItem("membersList", storedList);
 
-	// Load from localStorage
 	loadMemberList();
 })
 
 let delMember = (index) => {
-	// https://www.tutorialspoint.com/find-specific-key-value-in-array-of-objects-using-javascript
-
 	// Retrieve
 	members = JSON.parse(localStorage.getItem("membersList"));
 	members.splice(index, 1);
@@ -60,7 +98,7 @@ let delMember = (index) => {
 	loadMemberList();
 }
 
-
+// Load members list for localStorage.
 let loadMemberList = () => {
 	let members = JSON.parse(localStorage.getItem("membersList"));
 
@@ -78,28 +116,4 @@ let loadMemberList = () => {
 		return memberRow;
 	})
 	.join(''); // Remove trailing ',' commas.
-}
-
-
-let validateForm = () => {
-	if (firstname == "" || typeof(firstname) !== String) {
-		alert("First name must be filled out with a text");
-		return false;
-	}
-	if (surname == "" || typeof(firstname) !== String) {
-		alert("Surname must be filled out with a text");
-		return false;
-	}
-	if (age == "" || typeof(firstname) !== Number) {
-		alert("age must be filled out with a number.");
-		return false;
-	}
-	if (level == "Select Level" || typeof(firstname) !== Number) {
-		alert("A student level must be selected!");
-		return false;
-	}
-	if (club == "" || typeof(firstname) !== String) {
-		alert("Club must be filled out with a text");
-		return false;
-	}
 }

@@ -15,19 +15,36 @@
             <div class="col-md-4">
                 <form method="post" id="memberForm">
                     <h2 class="text-center"><strong>Add</strong> Club Member.</h2>
-                    <div class="form-group"><input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" /></div>
-                    <div class="form-group"><input type="text" class="form-control" id="surname" name="surname" placeholder="Surname" /></div>
-                    <div class="form-group"><input type="number" class="form-control" id="age" name="age" placeholder="Age" min="15" /></div>
-                    <div class="form-group"><select class="form-control" id="level" name="level">
-                            <option>Select Level</option>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" autofocus required />
+                        <small style="display: none; border-radius: 0;" class="p-1 alert alert-danger" id="firstnameErrorDiv"></small>
+                    </div> 
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="surname" name="surname" placeholder="Surname" required />
+                        <small style="display: none; border-radius: 0;" class="p-1 alert alert-danger" id="surnameErrorDiv"></small>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="age" name="age" placeholder="Age" min="15" required />
+                        <small style="display: none; border-radius: 0;" class="p-1 alert alert-danger" id="ageErrorDiv"></small>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" id="level" name="level" required>
+                            <option value="">Select Level</option>
                             <option value="100">100</option>
                             <option value="200">200</option>
                             <option value="300">300</option>
                             <option value="400">400</option>
                             <option value="500">500</option>
-                        </select></div>
-                    <div class="form-group"><input type="text" class="form-control" id="club" name="club" placeholder="Favorite Club" /></div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" id="addBtn" type="button">Add Member</button></div>
+                        </select>
+                        <small style="display: none; border-radius: 0;" class="p-1 alert alert-danger" id="levelErrorDiv"></small>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="club" name="club" placeholder="Favorite Club" />
+                        <small style="display: none; border-radius: 0;" class="p-1 alert alert-danger" id="clubErrorDiv"></small>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" id="addBtn" type="button">Add Member</button>
+                    </div>
                     
                     <div class="form-group"><textarea type="text" class="form-control" id="membersJson" name="membersJson" placeholder="Generated JSON" style="width:100%; height:100px;font-size:8px;"></textarea></div>
                 </form>                
