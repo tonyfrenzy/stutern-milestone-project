@@ -13,8 +13,7 @@ let club 	  = document.getElementById('club');
 
 
 let dummyMemberJson = () => {
-	let members = JSON.parse(localStorage.getItem("membersList")) ?? JSON.parse(membersJson.value);
-	console.log(members);
+	let members = JSON.parse(membersJson.value) ?? JSON.parse(localStorage.getItem("membersList"));
 	return members;
 }
 
@@ -23,7 +22,6 @@ let members = dummyMemberJson();
 
 window.onload = function(e) {
 // window.addEventListener("load", function(e) {
-	// console.log(members);
 	loadMemberList();	
 // });   
 };   
@@ -100,7 +98,7 @@ addBtn.addEventListener("click", function(e) {
 
 let delMember = (index) => {
 	// Retrieve
-	members = JSON.parse(localStorage.getItem("membersList"));
+	members = dummyMemberJson();
 	members.splice(index, 1);
 
 	let storedList = JSON.stringify(members);
